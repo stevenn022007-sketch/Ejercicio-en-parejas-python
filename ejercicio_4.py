@@ -1,44 +1,34 @@
-#Ejercicio 4: Conversor de Unidades
+#ejercicio 4
 
-# Factores de conversion a metros
-conversiones = {
-    "metros"      : 1.0,
-    "pies"        : 0.3048,
-    "pulgadas"    : 0.0254,
-    "centimetros" : 0.01,
-    "kilometros"  : 1000.0,
-    "millas"      : 1609.34,
-    "yardas"      : 0.9144
+factores = {
+    "centimetros": 0.01,
+    "metros": 1.0,
+    "kilometros": 1000,
+    "pies": 3.28,
+    "yardas": 1.76,
+    "millas": 1609.34
 }
-
-def convertir(cantidad, origen, destino):
-    if origen not in conversiones:
-        print(f"'{origen}' no es una unidad valida.")
+# Función para realizar la conversión
+def convertir(cantidad, unidad_origen, unidad_destino):
+    if unidad_origen in factores and unidad_destino in factores:
+        factor_origen = factores[unidad_origen]
+        factor_destino = factores[unidad_destino]
+        resultado = cantidad * factor_origen / factor_destino
+        return resultado
+    else:
         return None
-    if destino not in conversiones:
-        print(f"'{destino}' no es una unidad valida.")
-        return None
-    en_metros = cantidad * conversiones[origen]
-    resultado = en_metros / conversiones[destino]
-    return resultado
+#funcion unidad que no exita en el diccionario
+def unidad_no_existente(unidad):
+    return unidad not in factores
 
-while True:
-    print("\n=============CONVERSOR DE UNIDADES=============")
-    print("Unidades disponibles:")
-    for unidad in conversiones:
-        print(f"  - {unidad}")
-    print("===============================================")
+# Ejemplo de uso
+cantidad = float(input("Ingrese la cantidad a convertir: "))
+unidad_origen = input("Ingrese la unidad de origen (centimetros, metros, kilometros, pies, yardas, millas): ")
+unidad_destino = input("Ingrese la unidad de destino (centimetros, metros, kilometros, pies, yardas, millas): ")
 
-    cantidad = input("\nIngrese la cantidad (o 'salir'): ")
-    if cantidad.lower() == "salir":
-        print("Hasta luego.")
-        break
+resultado = convertir(cantidad, unidad_origen, unidad_destino)
 
-    cantidad = float(cantidad)
-    origen   = input("Unidad de origen  : ").lower()
-    destino  = input("Unidad de destino : ").lower()
-
-    resultado = convertir(cantidad, origen, destino)
-    if resultado is not None:
-        print(f"\n{cantidad} {origen} = {resultado:.4f} {destino}")
-        
+if resultado is not None:
+    print(f"{cantidad} {unidad_origen} son {resultado} {unidad_destino}")
+else:
+    print(f"La unidad '{unidad_origen}' o la unidad '{unidad_destino}' no existen entre los factores de conversión.") 

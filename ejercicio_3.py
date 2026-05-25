@@ -14,8 +14,15 @@ def añadir_contacto():
     # CONCEPTOS APLICADOS: input()
     # Capturamos los datos que digita el usuario por consola
     nombre = input("Escribe el nombre del contacto: ")
+    while nombre == "": # Se verifica que el nombre no este vacio si esta vacio vuelve y le pregunta la variable nombre
+        print("El nombre no puede estar vacio.")
+        nombre = input("Escribe el nombre del contacto: ")
+
     telefono = input(f"Escribe el teléfono de {nombre}: ")
-    
+    while telefono == "": # Se verifica que el telefono no este vacio si esta vacio vuelve y le pregunta la variable telefono
+        print("El telefono no puede estar vacio.")
+        telefono = input(f"Escribe el teléfono de {nombre}: ")
+        
     # Guardamos los datos directamente en el diccionario
     agenda_contactos[nombre] = telefono
     print(f"¡Contacto de {nombre} guardado correctamente!")
