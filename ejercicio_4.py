@@ -41,3 +41,4 @@ while True:
     resultado = convertir(cantidad, origen, destino)
     if resultado is not None:
         print(f"\n{cantidad} {origen} = {resultado:.4f} {destino}")
+        
