@@ -17,6 +17,3 @@ def promedio_notas():
     
     
 promedio_notas()
-
-
-     
